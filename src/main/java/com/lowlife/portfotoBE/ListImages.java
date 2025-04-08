@@ -2,7 +2,6 @@ package com.lowlife.portfotoBE;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +18,11 @@ public class ListImages {
     private final Cloudinary cloudinary;
 
     public ListImages() {
-        Dotenv dotenv = Dotenv.load();
-        this.cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
+         cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "dnzwsptc8",
+                "api_key", "193233763422214",
+                "api_secret", "SEdvkcaD2cUvT7QsLHocE6NeGGs",
+                "secure", true));
     }
 
     @GetMapping("/list-images")
